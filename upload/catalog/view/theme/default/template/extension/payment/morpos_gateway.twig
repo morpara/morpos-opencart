@@ -1,0 +1,48 @@
+<link href="/catalog/view/theme/default/stylesheet/morpos.css" rel="stylesheet" type="text/css"/>
+
+<!-- MorPOS Payment Method -->
+<div class="morpos-payment-container">
+  <div class="morpos-header">
+    <div class="morpos-brand">
+      <img src="/catalog/view/theme/default/image/payment/morpos-logo-small.png" alt="MorPOS" class="morpos-logo-img">
+    </div>
+    <div class="morpos-title">{{ text_title }}</div>
+    <img src="/catalog/view/theme/default/image/payment/card-logos.png" alt="Accepted Cards" class="morpos-card-logos-img">
+  </div>
+  <p class="morpos-description">{{ text_description }}</p>
+</div>
+
+<div class="buttons">
+  <div class="pull-right">
+    <input type="button" value="{{ button_confirm }}" id="button-confirm" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+  </div>
+</div>
+
+<!-- Modal HTML -->
+<div id="morpos-modal">
+  <div id="morpos-modal-content">
+    <button id="morpos-close-btn">×</button>
+    
+    <!-- Loading state -->
+    <div id="morpos-loading">
+      <div class="morpos-spinner"></div>
+      <p class="morpos-loading-text">{{ text_loading }}</p>
+    </div>
+    
+    <!-- Payment iframe -->
+    <iframe id="morpos-iframe"></iframe>
+  </div>
+</div>
+
+<script type="text/javascript">
+window.morposConfig = {
+  confirmUrl: '{{ confirm_url|e('js') }}',
+  redirectSuccess: '{{ redirect_success|e('js') }}',
+  textPaymentFailedDefault: '{{ text_payment_failed_default|e('js') }}',
+  textPaymentInitFailed: '{{ text_payment_init_failed|e('js') }}',
+  textNetworkError: '{{ text_network_error|e('js') }}',
+  textLoading: '{{ text_loading|e('js') }}',
+  textRedirecting: '{{ text_redirecting|e('js') }}'
+};
+</script>
+<script type="text/javascript" src="/catalog/view/theme/default/javascript/morpos.js"></script>

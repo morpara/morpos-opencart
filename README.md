@@ -1,18 +1,16 @@
 # MorPOS for OpenCart
 
-[![OpenCart Version](https://img.shields.io/badge/OpenCart-4.0%2B-blue.svg)](https://www.opencart.com/)
-[![PHP Version](https://img.shields.io/badge/PHP-8.0%2B-777bb4.svg)](https://php.net/)
+[![OpenCart Version](https://img.shields.io/badge/OpenCart-3.0%2B-blue.svg)](https://www.opencart.com/)
+[![PHP Version](https://img.shields.io/badge/PHP-7.1%2B-777bb4.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**MorPOS for OpenCart** is a secure and easy-to-use payment gateway extension that integrates the **Morpara MorPOS** payment system with OpenCart 4.x stores. Customers are redirected through a secure **Hosted Payment Page (HPP)** flow or can use an **Embedded Payment Form** when completing their orders.
+**MorPOS for OpenCart** is a secure and easy-to-use payment gateway extension that integrates the **Morpara MorPOS** payment system with OpenCart 3.x stores. Customers are redirected through a secure **Hosted Payment Page (HPP)** flow or can use an **Embedded Payment Form** when completing their orders.
 
-> **📌 Note:** This branch is for **OpenCart 4.x**. If you are looking for the **OpenCart 3.x** version, please visit the [3.x branch](https://github.com/morpara/morpos-opencart/tree/3.x).
-
-![MorPOS Payment Gateway](upload/extension/morpos_gateway/catalog/view/image/morpos-logo-small.png)
+> **📌 Note**: This branch supports **OpenCart 3.x**. If you're looking for **OpenCart 4.x** support, please visit the [4.x branch](https://github.com/morpara/morpos-opencart/tree/4.x).
 
 ## ✨ Features
 
-- 🛒 **OpenCart Integration**: Seamlessly adds MorPOS as a payment method for OpenCart 4.x
+- 🛒 **OpenCart Integration**: Seamlessly adds MorPOS as a payment method for OpenCart 3.x
 - 🔒 **Secure Payments**: Hosted Payment Page (HPP) and Embedded Payment Form options
 - 🌍 **Multi-Currency**: Supports TRY, USD, EUR currencies
 - 💳 **Multiple Payment Options**: Credit cards, debit cards, and installment payments
@@ -27,8 +25,8 @@
 
 | Component | Minimum | Recommended |
 |-----------|---------|-------------|
-| **OpenCart** | 4.0 | 4.1.0.3 |
-| **PHP** | 8.0 | 8.2+ |
+| **OpenCart** | 3.0 | 3.0.4.1+ |
+| **PHP** | 7.1 | 7.4+ |
 | **TLS** | 1.2 | 1.3 |
 
 ### PHP Extensions
@@ -78,8 +76,22 @@
 2. **Copy Files to OpenCart**
 
    ```bash
-   # Copy extension files
-   cp -r upload/extension/morpos_gateway/* /path/to/opencart/extension/morpos_gateway/
+   # Copy admin files
+   cp -r upload/admin/controller/extension/payment/morpos_gateway.php /path/to/opencart/admin/controller/extension/payment/
+   cp -r upload/admin/language/en-gb/extension/payment/morpos_gateway.php /path/to/opencart/admin/language/en-gb/extension/payment/
+   cp -r upload/admin/language/tr-tr/extension/payment/morpos_gateway.php /path/to/opencart/admin/language/tr-tr/extension/payment/
+   cp -r upload/admin/model/extension/payment/morpos_gateway.php /path/to/opencart/admin/model/extension/payment/
+   cp -r upload/admin/view/template/extension/payment/morpos_gateway.twig /path/to/opencart/admin/view/template/extension/payment/
+   cp -r upload/admin/view/javascript/ /path/to/opencart/admin/view/javascript/
+   cp -r upload/admin/view/stylesheet/ /path/to/opencart/admin/view/stylesheet/
+   
+   # Copy catalog files
+   cp -r upload/catalog/controller/extension/payment/morpos_gateway.php /path/to/opencart/catalog/controller/extension/payment/
+   cp -r upload/catalog/language/en-gb/extension/payment/morpos_gateway.php /path/to/opencart/catalog/language/en-gb/extension/payment/
+   cp -r upload/catalog/language/tr-tr/extension/payment/morpos_gateway.php /path/to/opencart/catalog/language/tr-tr/extension/payment/
+   cp -r upload/catalog/model/extension/payment/morpos_gateway.php /path/to/opencart/catalog/model/extension/payment/
+   cp -r upload/catalog/model/extension/payment/morpos_conversation.php /path/to/opencart/catalog/model/extension/payment/
+   cp -r upload/catalog/view/theme/default/ /path/to/opencart/catalog/view/theme/default/
    
    # Copy system library files
    cp -r upload/system/library/morpos/* /path/to/opencart/system/library/morpos/
@@ -88,8 +100,9 @@
 3. **Set Correct Permissions**
    ```bash
    # Set file permissions (adjust path as needed)
-   chmod 644 /path/to/opencart/extension/morpos_gateway/**/*.php
-   chmod 755 /path/to/opencart/extension/morpos_gateway/
+   chmod 644 /path/to/opencart/admin/controller/extension/payment/morpos_gateway.php
+   chmod 644 /path/to/opencart/catalog/controller/extension/payment/morpos_gateway.php
+   chmod 644 /path/to/opencart/system/library/morpos/*.php
    ```
 
 4. **Install via OpenCart Admin**
@@ -103,9 +116,9 @@
 
 1. Download the extension files from [GitHub](https://github.com/morpara/morpos-opencart)
 2. Extract the ZIP file
-3. Using your FTP client, upload the contents of `src/upload/` to your OpenCart root directory
+3. Using your FTP client, upload the contents of `upload/` to your OpenCart root directory
 4. Maintain the directory structure during upload
-5. Follow steps 4 from Method 2 to complete installation
+5. Follow step 4 from Method 2 to complete installation
 
 ## ⚙️ Configuration
 
@@ -206,7 +219,7 @@ The plugin implements multiple security layers:
 
 Enable error logging in OpenCart:
 
-1. **OpenCart 4.x:**
+1. **OpenCart 3.x:**
    ```php
    // In config.php and admin/config.php
    define('ERROR_LOG', '/path/to/your/error.log');
@@ -312,9 +325,9 @@ The plugin includes a built-in system requirements checker in the admin panel:
 
 | Component | Check |
 |-----------|-------|
-| **PHP Version** | 8.0+ required, 8.2+ recommended |
-| **OpenCart Version** | 4.0+ required, 4.1.0.3 recommended |
-| **TLS Support** | 1.2+ required, 1.3 recommended |
+| **PHP Version** | 7.1+ required, 7.4+ recommended |
+| **OpenCart Version** | 3.0+ required, 3.0.4.1+ recommended |
+| **TLS Support** | 1.2+ required, 1.3+ recommended |
 
 **Status Indicators:**
 - 🟢 **Green**: Meets recommended requirements
@@ -359,12 +372,12 @@ The plugin supports multiple languages:
 1. **Copy Language File:**
    ```bash
    # For admin panel
-   cp src/upload/extension/morpos_gateway/admin/language/en-gb/payment/morpos_gateway.php \
-      src/upload/extension/morpos_gateway/admin/language/[your-locale]/payment/morpos_gateway.php
+   cp upload/admin/language/en-gb/extension/payment/morpos_gateway.php \
+      upload/admin/language/[your-locale]/extension/payment/morpos_gateway.php
    
    # For catalog (customer-facing)
-   cp src/upload/extension/morpos_gateway/catalog/language/en-gb/payment/morpos_gateway.php \
-      src/upload/extension/morpos_gateway/catalog/language/[your-locale]/payment/morpos_gateway.php
+   cp upload/catalog/language/en-gb/extension/payment/morpos_gateway.php \
+      upload/catalog/language/[your-locale]/extension/payment/morpos_gateway.php
    ```
 
 2. **Translate Strings:**
@@ -403,14 +416,14 @@ We welcome contributions! Here's how to get started:
    ```
 
 2. **Set Up Local Environment**
-   - Install OpenCart 4.x locally
+   - Install OpenCart 3.x locally
    - Copy plugin files to OpenCart directory
    - Configure database and web server
 
 3. **Make Changes**
    - Follow OpenCart coding standards
    - Add appropriate documentation
-   - Test with OpenCart 4.x
+   - Test with OpenCart 3.x
 
 4. **Submit Pull Request**
    - Create feature branch: `git checkout -b feature/your-feature`
@@ -421,10 +434,10 @@ We welcome contributions! Here's how to get started:
 ### Coding Standards
 
 - Follow [OpenCart Extension Development Guidelines](https://docs.opencart.com/)
-- Use PSR-4 autoloading for PHP classes
-- Use namespaces for OpenCart 4.x code
+- Maintain compatibility with OpenCart 3.x
 - Include PHPDoc comments for functions and classes
 - Write meaningful commit messages
+- Follow OpenCart 3.x directory structure
 
 ### Testing Guidelines
 
@@ -451,8 +464,8 @@ Before submitting a pull request, test:
    - API signature verification
 
 5. **Compatibility**
-   - OpenCart 4.x (4.0, 4.1.0.3)
-   - PHP 8.0, 8.1, 8.2, 8.3
+   - OpenCart 3.x
+   - PHP 7.1, 7.2, 7.3, 7.4
 
 ## 📄 License
 

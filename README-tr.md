@@ -1,18 +1,16 @@
 # MorPOS for OpenCart
 
-[![OpenCart Sürümü](https://img.shields.io/badge/OpenCart-4.0%2B-blue.svg)](https://www.opencart.com/)
-[![PHP Sürümü](https://img.shields.io/badge/PHP-8.0%2B-777bb4.svg)](https://php.net/)
+[![OpenCart Sürümü](https://img.shields.io/badge/OpenCart-3.0%2B-blue.svg)](https://www.opencart.com/)
+[![PHP Sürümü](https://img.shields.io/badge/PHP-7.1%2B-777bb4.svg)](https://php.net/)
 [![Lisans](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**MorPOS for OpenCart**, OpenCart 4.x mağazalarına **Morpara MorPOS** ödeme sistemini entegre eden güvenli ve kullanımı kolay bir ödeme ağ geçidi eklentisidir. Müşteriler, siparişlerini tamamlarken güvenli **Barındırılan Ödeme Sayfası (HPP)** akışı üzerinden yönlendirilir veya **Gömülü Ödeme Formu** kullanabilir.
+**MorPOS for OpenCart**, OpenCart 3.x mağazalarına **Morpara MorPOS** ödeme sistemini entegre eden güvenli ve kullanımı kolay bir ödeme ağ geçidi eklentisidir. Müşteriler, siparişlerini tamamlarken güvenli **Barındırılan Ödeme Sayfası (HPP)** akışı üzerinden yönlendirilir veya **Gömülü Ödeme Formu** kullanabilir.
 
-> **📌 Not:** Bu sürüm **OpenCart 4.x** içindir. Eğer **OpenCart 3.x** sürümünü arıyorsanız, lütfen [3.x sürümünü](https://github.com/morpara/morpos-opencart/tree/3.x) ziyaret edin.
-
-![MorPOS Ödeme Ağ Geçidi](upload/extension/morpos_gateway/catalog/view/image/morpos-logo-small.png)
+> **📌 Not**: Bu versiyon **OpenCart 3.x** sürümünü desteklemektedir. **OpenCart 4.x** desteği arıyorsanız, lütfen [4.x versiyonuna](https://github.com/morpara/morpos-opencart/tree/4.x) gidin.
 
 ## ✨ Özellikler
 
-- 🛒 **OpenCart Entegrasyonu**: OpenCart 4.x için MorPOS'u ödeme yöntemi olarak sorunsuzca ekler
+- 🛒 **OpenCart Entegrasyonu**: OpenCart 3.x için MorPOS'u ödeme yöntemi olarak sorunsuzca ekler
 - 🔒 **Güvenli Ödemeler**: Barındırılan Ödeme Sayfası (HPP) ve Gömülü Ödeme Formu seçenekleri
 - 🌍 **Çoklu Para Birimi**: TRY, USD, EUR para birimlerini destekler
 - 💳 **Çoklu Ödeme Seçenekleri**: Kredi kartları, banka kartları ve taksitli ödemeler
@@ -27,8 +25,8 @@
 
 | Bileşen | Minimum | Önerilen |
 |---------|---------|----------|
-| **OpenCart** | 4.0 | 4.1.0.3 |
-| **PHP** | 8.0 | 8.2+ |
+| **OpenCart** | 3.0 | 3.0.4.1+ |
+| **PHP** | 7.1 | 7.4+ |
 | **TLS** | 1.2 | 1.3 |
 
 ### PHP Eklentileri
@@ -78,8 +76,22 @@
 2. **Dosyaları OpenCart'a Kopyalayın**
 
    ```bash
-   # Eklenti dosyalarını kopyalayın
-   cp -r upload/extension/morpos_gateway/* /path/to/opencart/extension/morpos_gateway/
+   # Yönetici dosyalarını kopyalayın
+   cp -r upload/admin/controller/extension/payment/morpos_gateway.php /path/to/opencart/admin/controller/extension/payment/
+   cp -r upload/admin/language/en-gb/extension/payment/morpos_gateway.php /path/to/opencart/admin/language/en-gb/extension/payment/
+   cp -r upload/admin/language/tr-tr/extension/payment/morpos_gateway.php /path/to/opencart/admin/language/tr-tr/extension/payment/
+   cp -r upload/admin/model/extension/payment/morpos_gateway.php /path/to/opencart/admin/model/extension/payment/
+   cp -r upload/admin/view/template/extension/payment/morpos_gateway.twig /path/to/opencart/admin/view/template/extension/payment/
+   cp -r upload/admin/view/javascript/ /path/to/opencart/admin/view/javascript/
+   cp -r upload/admin/view/stylesheet/ /path/to/opencart/admin/view/stylesheet/
+   
+   # Katalog dosyalarını kopyalayın
+   cp -r upload/catalog/controller/extension/payment/morpos_gateway.php /path/to/opencart/catalog/controller/extension/payment/
+   cp -r upload/catalog/language/en-gb/extension/payment/morpos_gateway.php /path/to/opencart/catalog/language/en-gb/extension/payment/
+   cp -r upload/catalog/language/tr-tr/extension/payment/morpos_gateway.php /path/to/opencart/catalog/language/tr-tr/extension/payment/
+   cp -r upload/catalog/model/extension/payment/morpos_gateway.php /path/to/opencart/catalog/model/extension/payment/
+   cp -r upload/catalog/model/extension/payment/morpos_conversation.php /path/to/opencart/catalog/model/extension/payment/
+   cp -r upload/catalog/view/theme/default/ /path/to/opencart/catalog/view/theme/default/
    
    # Sistem kütüphane dosyalarını kopyalayın
    cp -r upload/system/library/morpos/* /path/to/opencart/system/library/morpos/
@@ -88,8 +100,9 @@
 3. **Doğru İzinleri Ayarlayın**
    ```bash
    # Dosya izinlerini ayarlayın (yolu gerektiği gibi düzenleyin)
-   chmod 644 /path/to/opencart/extension/morpos_gateway/**/*.php
-   chmod 755 /path/to/opencart/extension/morpos_gateway/
+   chmod 644 /path/to/opencart/admin/controller/extension/payment/morpos_gateway.php
+   chmod 644 /path/to/opencart/catalog/controller/extension/payment/morpos_gateway.php
+   chmod 644 /path/to/opencart/system/library/morpos/*.php
    ```
 
 4. **OpenCart Yönetici Panelinden Yükleyin**
@@ -103,7 +116,7 @@
 
 1. Eklenti dosyalarını [GitHub](https://github.com/morpara/morpos-opencart) üzerinden indirin
 2. ZIP dosyasını çıkartın
-3. FTP istemcinizi kullanarak `src/upload/` içeriğini OpenCart kök dizinine yükleyin
+3. FTP istemcinizi kullanarak `upload/` içeriğini OpenCart kök dizinine yükleyin
 4. Yükleme sırasında dizin yapısını koruyun
 5. Kurulumu tamamlamak için Yöntem 2'deki 4. adımı takip edin
 
@@ -206,7 +219,7 @@ Eklenti birden fazla güvenlik katmanı uygular:
 
 OpenCart'ta hata loglamayı etkinleştirin:
 
-1. **OpenCart 4.x:**
+1. **OpenCart 3.x:**
    ```php
    // config.php ve admin/config.php içinde
    define('ERROR_LOG', '/path/to/your/error.log');
@@ -312,8 +325,8 @@ Eklenti, yönetici panelinde yerleşik bir sistem gereksinimleri kontrol aracı 
 
 | Bileşen | Kontrol |
 |---------|---------|
-| **PHP Sürümü** | 8.0+ gerekli, 8.2+ önerilen |
-| **OpenCart Sürümü** | 4.0+ gerekli, 4.1.0.3 önerilen |
+| **PHP Sürümü** | 7.1+ gerekli, 7.4+ önerilen |
+| **OpenCart Sürümü** | 3.0+ gerekli, 3.0.4.1+ önerilen |
 | **TLS Desteği** | 1.2+ gerekli, 1.3+ önerilen |
 
 **Durum Göstergeleri:**
@@ -359,12 +372,12 @@ Eklenti birden fazla dili destekler:
 1. **Dil Dosyasını Kopyalayın:**
    ```bash
    # Yönetici paneli için
-   cp src/upload/extension/morpos_gateway/admin/language/en-gb/payment/morpos_gateway.php \
-      src/upload/extension/morpos_gateway/admin/language/[dil-kodu]/payment/morpos_gateway.php
+   cp upload/admin/language/en-gb/extension/payment/morpos_gateway.php \
+      upload/admin/language/[dil-kodu]/extension/payment/morpos_gateway.php
    
    # Katalog için (müşteriye yönelik)
-   cp src/upload/extension/morpos_gateway/catalog/language/en-gb/payment/morpos_gateway.php \
-      src/upload/extension/morpos_gateway/catalog/language/[dil-kodu]/payment/morpos_gateway.php
+   cp upload/catalog/language/en-gb/extension/payment/morpos_gateway.php \
+      upload/catalog/language/[dil-kodu]/extension/payment/morpos_gateway.php
    ```
 
 2. **Metinleri Çevirin:**
@@ -403,14 +416,14 @@ Katkılarınızı bekliyoruz! İşte nasıl başlayacağınız:
    ```
 
 2. **Yerel Ortamı Kurun**
-   - OpenCart 4.x'i yerel olarak yükleyin
+   - OpenCart 3.x'i yerel olarak yükleyin
    - Eklenti dosyalarını OpenCart dizinine kopyalayın
    - Veritabanı ve web sunucusunu yapılandırın
 
 3. **Değişiklik Yapın**
    - OpenCart kodlama standartlarını takip edin
    - Uygun dokümantasyon ekleyin
-   - OpenCart 4.x ile test edin
+   - OpenCart 3.x ile test edin
 
 4. **Pull Request Gönderin**
    - Özellik dalı oluşturun: `git checkout -b feature/yeni-ozellik`
@@ -421,10 +434,10 @@ Katkılarınızı bekliyoruz! İşte nasıl başlayacağınız:
 ### Kodlama Standartları
 
 - [OpenCart Eklenti Geliştirme Kılavuzları](https://docs.opencart.com/)'nu takip edin
-- PHP sınıfları için PSR-4 otomatik yükleme kullanın
-- OpenCart 4.x kodu için ad alanları kullanın
+- OpenCart 3.x ile uyumluluğu koruyun
 - Fonksiyonlar ve sınıflar için PHPDoc yorumları ekleyin
 - Anlamlı commit mesajları yazın
+- OpenCart 3.x dizin yapısını takip edin
 
 ### Test Kılavuzları
 
@@ -451,8 +464,8 @@ Pull request göndermeden önce test edin:
    - API imza doğrulaması
 
 5. **Uyumluluk**
-   - OpenCart 4.x (4.0, 4.1.0.3)
-   - PHP 8.0, 8.1, 8.2, 8.3
+   - OpenCart 3.x
+   - PHP 7.1, 7.2, 7.3, 7.4
 
 ## 📄 Lisans
 

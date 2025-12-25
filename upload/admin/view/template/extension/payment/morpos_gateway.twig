@@ -1,0 +1,346 @@
+{{ header }}
+<link href="view/stylesheet/morpos-admin.css" rel="stylesheet" type="text/css"/>
+<link href="view/stylesheet/morpos-toast.css" rel="stylesheet" type="text/css"/>
+<script src="view/javascript/morpos-toast.js" type="text/javascript"></script>
+{{ column_left }}
+<div id="content">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="pull-right">
+				<button type="submit" form="form-payment" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary">
+					<i class="fa-solid fa-save"></i>
+				</button>
+				<a href="{{ back }}" data-bs-toggle="tooltip" title="{{ button_back }}" class="btn btn-light">
+					<i class="fa-solid fa-reply"></i>
+				</a>
+			</div>
+			<h1>{{ heading_title }}</h1>
+			<ol class="breadcrumb">
+				{% for breadcrumb in breadcrumbs %}
+					<li class="breadcrumb-item">
+						<a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a>
+					</li>
+				{% endfor %}
+			</ol>
+		</div>
+	</div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+
+    <div class="morpos-settings">
+      <div class="morpos-header">
+        <div class="header-left">
+          <h2 class="morpos-h2">{{ heading_title }}</h2>
+          <p class="morpos-desc">{{ method_description }}</p>
+          <p class="morpos-version">{{ text_version }} {{ morpos_gateway_version }}</p>
+        </div>
+        <div class="header-right">
+          <img class="morpos-logo" src="{{ morpos_logo }}" alt="{{ text_morpos_logo_alt }}"/>
+        </div>
+      </div>
+
+      <div class="morpos-connection">
+        <span class="pill pill-setup">{{ text_setup }}</span>
+        <span class="pill pill-ok">{{ text_connection_successful }}</span>
+        <span class="pill pill-fail">{{ text_connection_failed }}</span>
+        <button type="button" class="button button-primary morpos-test-btn">{{ text_test_connection }}</button>
+      </div>
+
+      <form id="form-payment" class="form" action="{{ save }}" method="post">
+        <div class="field-row">
+          <div class="label">{{ entry_status }}</div>
+          <div class="field">
+            <label class="cbx">
+              <input type="checkbox" id="enabled" name="payment_morpos_gateway_status" {{ payment_morpos_gateway_status == 'on' ? 'checked' : '' }}>
+              <span class="cbx__box" aria-hidden="true">
+                <svg class="cbx__check" viewbox="0 0 24 24" width="16" height="16">
+                  <path d="M5 12.5l4 4L19 7.5"></path>
+                </svg>
+              </span>
+              <span class="cbx__label">{{ text_enable }}</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="label">{{ entry_test_mode }}</div>
+          <div class="field">
+            <label class="cbx cbx--warn">
+              <input type="checkbox" id="testmode" name="payment_morpos_gateway_testmode" {{ payment_morpos_gateway_testmode == 'on' ? 'checked' : '' }}>
+              <span class="cbx__box" aria-hidden="true">
+                <svg class="cbx__check" viewbox="0 0 24 24" width="16" height="16">
+                  <path d="M5 12.5l4 4L19 7.5"></path>
+                </svg>
+              </span>
+              <span class="cbx__label">{{ text_enable_test_mode }}</span>
+              <span class="cbx__hint">{{ text_test_mode_hint }}</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="label" for="merchant_id">{{ entry_merchant_id }}</label>
+          <div class="field">
+            <input id="merchant_id" type="text" placeholder="{{ placeholder_merchant_id }}" name="payment_morpos_gateway_merchant_id" value="{{ payment_morpos_gateway_merchant_id }}" autocomplete="off" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="label" for="client_id">{{ entry_client_id }}</label>
+          <div class="field">
+            <input id="client_id" type="text" placeholder="{{ placeholder_client_id }}" name="payment_morpos_gateway_client_id" value="{{ payment_morpos_gateway_client_id }}" autocomplete="off" required>
+          </div>
+        </div>
+
+				<div class="field-row">
+					<label class="label" for="client_secret">{{ entry_client_secret }}</label>
+					<div class="field">
+						<input id="client_secret" type="password" placeholder="{{ placeholder_client_secret }}" name="payment_morpos_gateway_client_secret" value="{{ payment_morpos_gateway_client_secret }}" autocomplete="off" required>
+					</div>
+				</div>
+
+        <div class="field-row">
+          <label class="label" for="api_key">{{ entry_api_key }}</label>
+          <div class="field">
+            <input id="api_key" type="password" placeholder="{{ placeholder_api_key }}" name="payment_morpos_gateway_api_key" value="{{ payment_morpos_gateway_api_key }}" autocomplete="off" required>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="label" for="form_type">{{ entry_form_type }}</label>
+          <div class="field">
+            <select id="form_type" aria-label="{{ entry_form_type }}" name="payment_morpos_gateway_form_type">
+              {% for form_type in form_types %}
+                <option value="{{ form_type.value }}" {{ form_type.value == payment_morpos_gateway_form_type ? 'selected' : '' }}>{{ form_type.text }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="label" for="success_status">{{ entry_success_status }}</label>
+          <div class="field">
+            <select id="success_status" aria-label="{{ entry_success_status }}" name="payment_morpos_gateway_success_status_id">
+              {% for status in order_statuses %}
+                <option value="{{ status.order_status_id }}" {{ status.order_status_id == payment_morpos_gateway_success_status_id ? 'selected' : '' }}>{{ status.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="label" for="failed_status">{{ entry_failed_status }}</label>
+          <div class="field">
+            <select id="failed_status" aria-label="{{ entry_failed_status }}" name="payment_morpos_gateway_failed_status_id">
+              {% for status in order_statuses %}
+                <option value="{{ status.order_status_id }}" {{ status.order_status_id == payment_morpos_gateway_failed_status_id ? 'selected' : '' }}>{{ status.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <label class="label" for="sort_order">{{ entry_sort_order }}</label>
+          <div class="field">
+            <input id="sort_order" type="number" placeholder="{{ placeholder_sort_order }}" name="payment_morpos_gateway_sort_order" value="{{ payment_morpos_gateway_sort_order }}">
+          </div>
+        </div>
+
+        <input type="hidden" name="payment_morpos_gateway_connection_status" value="{{ payment_morpos_gateway_connection_status }}">
+
+        <div class="actions">
+          <button class="button" type="submit">{{ text_save_changes }}</button>
+        </div>
+      </form>
+
+      <div class="morpos-requirements">
+        <h2>{{ text_system_requirements }}</h2>
+        <p>{{ text_server_status_description }}</p>
+        <div class="morpos-reqs">
+          <div class="morpos-reqs__head">{{ text_requirements }}</div>
+          <table>
+            <thead>
+              <tr>
+                <th>{{ text_component }}</th>
+                <th class="col-current">{{ text_current }}</th>
+                <th>{{ text_recommended }}</th>
+                <th>{{ text_required }}</th>
+                <th class="col-status">{{ text_status }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in requirements %}
+                <tr>
+                  <td>{{ row.label|e }}</td>
+                  <td>{{ row.cur|e }}</td>
+                  <td>{{ row.rec|e }}</td>
+                  <td>{{ row.req|e }}</td>
+                  <td>
+                    <span class="morpos-badge  {{ row.status.class|e }}">
+                      {% if row.status.class == 'morpos-ok' %}
+                        &#x2714;
+                      {% elseif row.status.class == 'morpos-warning' %}
+                        &#9888;&#xfe0f;
+                      {% elseif row.status.class == 'morpos-danger' %}
+                        &#10060;
+                      {% endif %}
+                      {{ row.status.hint|e }}
+                    </span>
+
+                    {% if row.status.class == 'morpos-warning' and row.label == 'PHP' %}
+                      <span class="morpos-hint">{{ text_php_warning_hint|e }}</span>
+                    {% endif %}
+                    {% if row.status.class == 'morpos-danger' %}
+                      <span class="morpos-hint">{{ text_tls_danger_hint|e }}</span>
+                    {% endif %}
+                    {% if row.label == 'TLS' and row.status.class == 'morpos-danger' %}
+                      <span class="morpos-hint">{{ text_tls_danger_hint|e }}</span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+jQuery(function ($) {
+  function setStatus(s) { // 'setup' | 'ok' | 'fail'
+    $('.morpos-connection .pill').css('opacity', .35);
+    if (s === 'ok') {
+      $('.pill-ok').css('opacity', 1);
+    } else if (s === 'fail') {
+      $('.pill-fail').css('opacity', 1);
+    } else {
+      $('.pill-setup').css('opacity', 1);
+    }
+
+    $('[name="payment_morpos_gateway_connection_status"]').val(s);
+  }
+
+  function readField(id) {
+    return $('#' + id).val() || '';
+  }
+
+  $('.morpos-test-btn').on('click', function () {
+    const $btn = $(this);
+    $btn.prop('disabled', true).text('{{ text_testing }}');
+
+    const credentials = {
+      merchant_id: readField('merchant_id'),
+      client_id: readField('client_id'),
+      client_secret: readField('client_secret'),
+      api_key: readField('api_key'),
+    };
+
+    $.post('index.php?route=extension/payment/morpos_gateway/testConnection&user_token={{ user_token }}', {
+      credentials: credentials,
+      testmode: $('#testmode').is(':checked') ? 'yes' : 'no'
+    })
+      .done(function (res) {
+        if (res.success) {
+          const s = res.status === 'ok' ? 'ok' : 'fail';
+          setStatus(s);
+          toast({
+            color: s === 'ok' ? 'success' : 'danger',
+            title: s === 'ok' ? '{{ text_connection_successful }}' : '{{ text_connection_failed }}',
+            duration: 4000
+          });
+        } else {
+          setStatus('fail');
+          toast({
+            color: 'danger',
+            title: '{{ text_connection_error }}',
+            duration: 4000
+          });
+        }
+      })
+      .fail(function () {
+        setStatus('fail');
+        toast({
+          color: 'danger',
+          title: '{{ text_could_not_reach_server }}',
+          duration: 4000
+        });
+      })
+      .always(function () {
+        $btn.prop('disabled', false).text('{{ text_test_connection }}');
+      });
+  });
+
+  // Handle form save with custom AJAX to get connection status
+  $('#form-payment').on('submit', function (e) {
+    e.preventDefault(); // Prevent default form submission
+
+    const $form = $(this);
+    const $submitBtn = $form.find('button[type="submit"]');
+    const originalText = $submitBtn.text();
+
+    // Disable submit button and show loading state
+    $submitBtn.prop('disabled', true).text('{{ text_saving }}...');
+
+    // Serialize form data
+    const formData = $form.serialize();
+
+    // Make AJAX request
+    $.post($form.attr('action'), formData)
+      .done(function (response) {
+        if (response.success) {
+          // Show success message
+          toast({
+            color: 'success',
+            title: '{{ text_success }}',
+            duration: 3000
+          });
+
+          // Update connection status if available
+          if (response.connection_status) {
+            setStatus(response.connection_status);
+
+            // Show connection status message in toast
+            if (response.connection_message) {
+              setTimeout(function () {
+                toast({
+                  color: response.connection_status === 'ok' ? 'success' : 'danger',
+                  title: response.connection_status === 'ok' ? '{{ text_connection_successful }}' : '{{ text_connection_failed }}',
+                  duration: 4000
+                });
+              }, 500);
+            }
+          }
+        } else if (response.error) {
+          // Show error message
+          toast({
+            color: 'danger',
+            title: '{{ text_error }}',
+            description: response.error.warning || response.error || '{{ text_save_failed }}',
+            duration: 5000
+          });
+        }
+      })
+      .fail(function () {
+        toast({
+          color: 'danger',
+          title: '{{ text_error }}',
+          description: '{{ text_could_not_reach_server }}',
+          duration: 5000
+        });
+      })
+      .always(function () {
+        // Re-enable submit button
+        $submitBtn.prop('disabled', false).text(originalText);
+      });
+  });
+
+  setStatus('{{ payment_morpos_gateway_connection_status }}' || 'setup');
+});
+</script>
+{{ footer }}
