@@ -13,7 +13,7 @@
 - 🛒 **OpenCart Integration**: Seamlessly adds MorPOS as a payment method for OpenCart 3.x
 - 🔒 **Secure Payments**: Hosted Payment Page (HPP) and Embedded Payment Form options
 - 🌍 **Multi-Currency**: Supports TRY, USD, EUR currencies
-- 💳 **Multiple Payment Options**: Credit cards, debit cards, and installment payments
+- 💳 **Multiple Payment Options**: Credit cards, debit cards payments
 - 🧪 **Sandbox Mode**: Complete test environment for development
 - 🔧 **Easy Configuration**: Simple admin panel setup with connection testing
 - 🛡️ **Security Features**: TLS 1.2+ requirement, signed API communication, cart/order validation
