@@ -1,0 +1,499 @@
+.morpos-h2 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 6px;
+}
+
+.morpos-desc {
+  color: #333;
+  margin-top: 4px;
+  line-height: 1.5;
+  font-size: 13px;
+}
+
+.morpos-version {
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 1em 0;
+  font-size: 12px;
+}
+
+.morpos-connection {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0 18px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.morpos-connection .morpos-test-btn {
+  margin-left: auto;
+  font-size: 12px;
+}
+
+.morpos-connection .pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 28px;
+  padding: 0 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: #eef2ff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  font-size: 12px;
+}
+
+.morpos-connection .pill::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #cbd5e1;
+}
+
+.morpos-connection .pill-setup {
+  background: #eef2ff;
+}
+
+.morpos-connection .pill-ok {
+  background: #ecfdf5;
+  border-color: #d1fae5;
+  color: #065f46;
+}
+
+.morpos-connection .pill-ok::before {
+  background: #10b981;
+}
+
+.morpos-connection .pill-fail {
+  background: #fff1f2;
+  border-color: #ffe4e6;
+  color: #9f1239;
+}
+
+.morpos-connection .pill-fail::before {
+  background: #ef4444;
+}
+
+.morpos-settings {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.morpos-settings .morpos-header {
+  display: flex;
+  gap: 12px;
+}
+
+.morpos-settings .morpos-header .header-left {
+  flex: 1;
+}
+
+.morpos-settings .morpos-header .morpos-logo {
+  height: 72px;
+}
+
+.morpos-settings label {
+  cursor: pointer;
+}
+
+.morpos-settings input[type="text"],
+.morpos-settings input[type="password"],
+.morpos-settings input[type="email"],
+.morpos-settings input[type="url"],
+.morpos-settings input[type="number"],
+.morpos-settings textarea,
+.morpos-settings select {
+  width: 100% !important;
+  max-width: 100%;
+  padding: 4px 8px !important;
+  line-height: 28px;
+  border: 2px solid #d0d7de;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #0f172a;
+  box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.03);
+}
+
+.morpos-settings input::placeholder,
+.morpos-settings textarea::placeholder {
+  color: #94a3b8;
+}
+
+.morpos-settings input[disabled],
+.morpos-settings textarea[disabled],
+.morpos-settings select[disabled] {
+  background: #eef2f7;
+  color: #9aa6b2;
+  border-color: #e2e8f0;
+}
+
+.morpos-settings input:focus,
+.morpos-settings textarea:focus,
+.morpos-settings select:focus {
+  outline: none;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+  background: #ffffff;
+}
+
+.morpos-settings textarea {
+  min-height: 112px;
+  resize: vertical;
+}
+
+.morpos-settings select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, #64748b 50%), linear-gradient(135deg, #64748b 50%, transparent 50%), linear-gradient(#d0d7de, #d0d7de);
+  background-position: calc(100% - 22px) 55%, calc(100% - 16px) 55%, calc(100% - 42px) 50%;
+  background-size: 6px 6px, 6px 6px, 1px 24px;
+  background-repeat: no-repeat;
+  padding-right: 50px;
+}
+
+.morpos-settings .description {
+  display: block;
+  margin-top: 8px;
+  color: #64748b;
+}
+
+.morpos-settings .button {
+  color: #fff;
+  background: #7c3aed;
+  border-color: #7c3aed;
+  border-radius: 12px;
+  padding: 10px 18px;
+  height: auto;
+  line-height: 1.2;
+  font-weight: 700;
+  border: 0;
+}
+
+.morpos-settings .button:hover {
+  color: #fff;
+  background: #6d28d9;
+  border-color: #6d28d9;
+}
+
+.morpos-settings .button:disabled {
+  background: #a78bfa;
+  border-color: #a78bfa;
+  cursor: not-allowed;
+}
+
+@media(max-width: 782px) {
+  .morpos-settings .form-table th {
+    display: block;
+    width: 100%;
+    padding: 12px 14px 6px;
+  }
+
+  .morpos-settings .form-table th label {
+    text-align: left;
+  }
+
+  .morpos-settings .form-table td {
+    display: block;
+    padding: 0 14px 14px;
+  }
+
+  .morpos-settings .form-table tr {
+    padding: 10px;
+  }
+
+  .morpos-settings input,
+  .morpos-settings textarea,
+  .morpos-settings select {
+    width: 100%;
+  }
+}
+
+/* Validation styles */
+.morpos-settings input:required:user-invalid {
+  border-color: #fca5a5;
+  background-color: #fee2e2;
+}
+
+.morpos-settings input:required:user-invalid::placeholder {
+  color: #dc2626;
+  opacity: .8;
+}
+
+.morpos-requirements h2 {
+  color: #1d2327;
+  font-size: 1.3em;
+  margin: 1em 0;
+  font-weight: 600;
+}
+
+.morpos-requirements p {
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 1em 0;
+}
+
+.morpos-reqs {
+  margin-top: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.morpos-reqs__head {
+  background: #f9fafb;
+  padding: 10px 12px;
+  font-weight: 600;
+}
+
+.morpos-reqs table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.morpos-reqs th,
+.morpos-reqs td {
+  padding: 10px 12px;
+  border-top: 1px solid #f0f2f5;
+  text-align: left;
+}
+
+.morpos-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.morpos-ok {
+  color: #065f46;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+}
+
+.morpos-warning {
+  color: #92400e;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+}
+
+.morpos-danger {
+  color: #7f1d1d;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.morpos-hint {
+  display: block;
+  font-size: 12px;
+  opacity: .9;
+  margin-top: 4px;
+}
+
+.morpos-reqs .col-status {
+  width: 220px;
+}
+
+.morpos-reqs .col-current {
+  width: 230px;
+}
+
+:root {
+  --cbx-size: 25px;
+  --cbx-radius: 8px;
+  --cbx-border: #cbd5e1;
+  --cbx-bg: #ffffff;
+  --cbx-on: #6d28d9;
+  --cbx-on-warn: #ea580c;
+  --cbx-shadow: 0 2px 6px rgba(2, 6, 23, 0.12);
+  --cbx-ripple: rgba(109, 40, 217, 0.15);
+  --text: #0f172a;
+  --muted: #64748b;
+}
+
+.cbx {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font: 14px / 1.35 system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+  color: var(--text);
+  user-select: none;
+  position: relative;
+}
+
+.cbx>input {
+  position: absolute;
+  inset: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.cbx__box {
+  width: var(--cbx-size);
+  height: var(--cbx-size);
+  border: 2px solid var(--cbx-border);
+  border-radius: var(--cbx-radius);
+  background: var(--cbx-bg);
+  display: inline-grid;
+  place-items: center;
+  box-shadow: var(--cbx-shadow);
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.12s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cbx:active .cbx__box {
+  transform: scale(0.96);
+}
+
+.cbx__box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: transparent;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.cbx:active .cbx__box::after {
+  background: var(--cbx-ripple);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.cbx__check path {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 26;
+  stroke-dashoffset: 26;
+  transition: stroke-dashoffset 0.22s ease 0.04s;
+}
+
+.cbx>input:checked+.cbx__box {
+  background: var(--cbx-on);
+  border-color: transparent;
+}
+
+.cbx>input:checked+.cbx__box .cbx__check path {
+  stroke-dashoffset: 0;
+}
+
+.cbx>input:focus-visible+.cbx__box {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+.cbx>input:indeterminate+.cbx__box {
+  background: var(--cbx-on);
+  border-color: transparent;
+}
+
+.cbx>input:indeterminate+.cbx__box .cbx__check path {
+  d: path("M6 12h12");
+  stroke-dasharray: 12;
+  stroke-dashoffset: 0;
+}
+
+.cbx__label {
+  font-weight: 600;
+}
+
+.cbx__hint {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.cbx--warn {
+  --cbx-on: var(--cbx-on-warn);
+  --cbx-ripple: rgba(234, 88, 12, 0.15);
+}
+
+@media(prefers-reduced-motion: reduce) {
+  .cbx__box,
+  .cbx__box::after,
+  .cbx__check path {
+    transition: none;
+  }
+}
+
+:root {
+  --bg: #f6f7fb;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --chip: #eef2ff;
+}
+
+.morpos-settings {
+  color: var(--text);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+}
+
+@media(max-width:720px) {
+  .form {
+    grid-template-columns: 1fr
+  }
+
+  .form .label {
+    margin-top: 8px
+  }
+}
+
+.label {
+  font-weight: 700;
+  color: rgb(29, 35, 39);
+  padding: 14px 18px;
+  text-align: right;
+}
+
+.subtle {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.field {
+  position: relative;
+  width: 100%;
+}
+
+.chip {
+  display: inline-block;
+  background: var(--chip);
+  color: #4f46e5;
+  padding: 4px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.actions {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,194 @@
+/* Morpos Gateway Modal Styles */
+#morpos-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+}
+
+#morpos-modal.modal-show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+#morpos-modal-content {
+  position: relative;
+  background: #fff;
+  width: 90%;
+  max-width: 900px;
+  height: 80vh;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#morpos-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10000;
+  background: #fff;
+  border: none;
+  font-size: 30px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  line-height: 1;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+#morpos-close-btn:hover {
+  background: #f0f0f0;
+  color: #000;
+  transform: scale(1.1);
+}
+
+#morpos-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Loading state inside modal */
+#morpos-loading {
+  display: none;
+  text-align: center;
+  padding: 40px 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+.morpos-spinner {
+  display: inline-block;
+  width: 3rem;
+  height: 3rem;
+  border: 0.3em solid rgba(124, 58, 237, 0.2);
+  border-radius: 50%;
+  border-top-color: #7c3aed;
+  animation: spinner 0.6s linear infinite;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.morpos-loading-text {
+  color: #6b7280;
+  font-size: 16px;
+  margin: 15px 0 0 0;
+  font-weight: 500;
+}
+
+/* Body scroll lock */
+body.morpos-modal-open {
+  overflow: hidden;
+}
+
+/* MorPOS Payment Method Component */
+.morpos-payment-container {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  background-color: #f9f9f9;
+  margin-bottom: 15px;
+}
+
+.morpos-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+
+.morpos-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.morpos-title {
+  flex: 1;
+  font-size: 13px;
+  color: #333;
+}
+
+.morpos-logo-img {
+  height: 24px;
+}
+
+.morpos-card-logos-img {
+  max-height: 24px;
+}
+
+.morpos-description {
+  font-size: 13px;
+  margin: 0;
+  color: #6c757d;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  #morpos-modal-content {
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    max-width: none;
+  }
+
+  #morpos-close-btn {
+    top: 15px;
+    right: 15px;
+    width: 45px;
+    height: 45px;
+    font-size: 32px;
+  }
+
+  #morpos-loading {
+    padding: 30px 15px;
+  }
+
+  .morpos-spinner {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .morpos-loading-text {
+    font-size: 14px;
+  }
+}
