@@ -1,0 +1,53 @@
+<link href="/extension/morpos_gateway/catalog/view/stylesheet/morpos.css" rel="stylesheet" type="text/css"/>
+
+<!-- MorPOS Payment Method -->
+<div class="morpos-payment-container">
+  <div class="morpos-header">
+    <div class="morpos-brand">
+      <img src="/extension/morpos_gateway/catalog/view/image/morpos-logo-small.png" alt="MorPOS" class="morpos-logo-img">
+    </div>
+    <div class="morpos-title">{{ text_title }}</div>
+    <img src="/extension/morpos_gateway/catalog/view/image/card-logos.png" alt="Accepted Cards" class="morpos-card-logos-img">
+  </div>
+  <p class="morpos-description">{{ text_description }}</p>
+</div>
+
+<!-- Error message container -->
+{% if error_payment %}
+<div class="alert alert-danger" style="margin: 10px 0;">
+  <i class="fa fa-exclamation-circle"></i> <strong>{{ text_payment_failed }}:</strong> {{ error_payment }}
+</div>
+{% endif %}
+
+<div class="text-end">
+  <button type="button" id="button-confirm" class="btn btn-primary">{{ button_confirm }}</button>
+</div>
+
+<!-- Modal HTML -->
+<div id="morpos-modal">
+  <div id="morpos-modal-content">
+    <button id="morpos-close-btn">×</button>
+    
+    <!-- Loading state -->
+    <div id="morpos-loading">
+      <div class="morpos-spinner"></div>
+      <p class="morpos-loading-text">{{ text_redirecting }}</p>
+    </div>
+    
+    <!-- Payment iframe -->
+    <iframe id="morpos-iframe" sandbox="allow-forms allow-scripts allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"></iframe>
+  </div>
+</div>
+
+<script>
+window.morposConfig = {
+  confirmUrl: '{{ confirm_url|e('js') }}',
+  redirectSuccess: '{{ redirect_success|e('js') }}',
+  textPaymentFailedDefault: '{{ text_payment_failed_default|e('js') }}',
+  textPaymentInitFailed: '{{ text_payment_init_failed|e('js') }}',
+  textNetworkError: '{{ text_network_error|e('js') }}',
+  textRedirecting: '{{ text_redirecting|e('js') }}',
+  textLoading: '{{ text_redirecting|e('js') }}'
+};
+</script>
+<script src="/extension/morpos_gateway/catalog/view/javascript/morpos.js"></script>
