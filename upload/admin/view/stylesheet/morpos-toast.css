@@ -1,0 +1,199 @@
+/* morpos-toast – styles (no deps) */
+:root {
+  --morpos-radius: 14px;
+  --morpos-gap: 12px;
+  --morpos-shadow: 0 10px 30px rgba(0, 0, 0, .20);
+  --morpos-accent-width: 10px;
+}
+
+/* Containers */
+.morpos-container {
+  position: fixed;
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  gap: var(--morpos-gap);
+  pointer-events: none;
+}
+
+.morpos-container.top-right {
+  top: 16px;
+  right: 16px;
+  align-items: flex-end;
+}
+
+.morpos-container.top-left {
+  top: 16px;
+  left: 16px;
+  align-items: flex-start;
+}
+
+.morpos-container.bottom-right {
+  bottom: 16px;
+  right: 16px;
+  align-items: flex-end;
+}
+
+.morpos-container.bottom-left {
+  bottom: 16px;
+  left: 16px;
+  align-items: flex-start;
+}
+
+.morpos-container.top-center {
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+.morpos-container.bottom-center {
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  align-items: center;
+}
+
+/* Toast */
+.morpos-toast {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: var(--morpos-accent-width) 1fr auto;
+  align-items: center;
+  gap: 12px;
+  min-width: 240px;
+  max-width: 360px;
+  padding: 12px 12px;
+  border-radius: var(--morpos-radius);
+  color: #fff;
+  box-shadow: var(--morpos-shadow);
+  overflow: hidden;
+  backdrop-filter: saturate(140%) blur(6px);
+  border: 1px solid rgba(255, 255, 255, .12);
+  position: relative;
+  opacity: 0;
+  transform: translateY(6px);
+  box-sizing: border-box;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+  contain: paint;
+}
+
+.morpos-toast * {
+  box-sizing: inherit;
+}
+
+/* Left accent bar */
+.morpos-accent {
+  width: var(--morpos-accent-width);
+  height: 100%;
+  background: currentColor;
+  border-radius: 6px;
+}
+
+/* Content */
+.morpos-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.morpos-container .morpos-toast .morpos-title {
+  font: 600 14px/1.2 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+  margin: 0;
+  color: currentColor !important;
+}
+
+.morpos-container .morpos-toast .morpos-desc {
+  margin-top: 4px;
+  font: 400 13px/1.35 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial;
+  color: currentColor !important;
+  opacity: .92 !important;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Close button */
+.morpos-close {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  opacity: .85;
+  font-size: 18px;
+  line-height: 1;
+  padding: 2px 6px;
+  cursor: pointer;
+  border-radius: 10px;
+  align-self: start;
+}
+
+.morpos-close:hover {
+  opacity: 1;
+}
+
+/* Progress */
+.morpos-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, .6);
+  transform-origin: left;
+  transform: scaleX(1);
+}
+
+/* Animation helpers */
+.morpos-stable {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* set after enter completes */
+.morpos-enter {
+  animation: morpos-fade-in-up .26s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+.morpos-leave {
+  animation: morpos-fade-out-up .22s cubic-bezier(.4, 0, .2, 1) both;
+}
+
+@keyframes morpos-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes morpos-fade-out-up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .morpos-enter,
+  .morpos-leave {
+    animation: none;
+  }
+
+  .morpos-toast {
+    opacity: 1;
+    transform: none;
+  }
+
+  .morpos-progress {
+    display: none;
+  }
+}
