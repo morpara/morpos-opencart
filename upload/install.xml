@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension>
+    <name>MorPOS Payment Plugin</name>
+    <version>1.0.0</version>
+    <author>MorPOS</author>
+    <link>https://morpara.com</link>
+    <type>payment</type>
+    <code>morpos_gateway</code>
+    <description>MorPOS OpenCart is a virtual POS plugin specially developed for e-commerce websites built on the OpenCart infrastructure. With this plugin, you can easily accept payments from your customers via credit or debit card — either in full or in installments — and integrate seamlessly with all banks. It is easy to install and requires no technical knowledge.</description>
+    <files>
+        <file>admin/controller/extension/payment/morpos_gateway.php</file>
+        <file>admin/language/en-gb/extension/payment/morpos_gateway.php</file>
+        <file>admin/language/tr-tr/extension/payment/morpos_gateway.php</file>
+        <file>admin/view/template/extension/payment/morpos_gateway.twig</file>
+        <file>admin/view/stylesheet/morpos-admin.css</file>
+        <file>admin/view/stylesheet/morpos-toast.css</file>
+        <file>admin/view/javascript/morpos-toast.js</file>
+        <file>admin/view/image/payment/morpos-logo.png</file>
+        <file>admin/view/image/payment/morpos-logo-small.png</file>
+        <file>admin/view/image/payment/card-logos.png</file>
+        <file>catalog/controller/extension/payment/morpos_gateway.php</file>
+        <file>catalog/language/en-gb/extension/payment/morpos_gateway.php</file>
+        <file>catalog/language/tr-tr/extension/payment/morpos_gateway.php</file>
+        <file>catalog/model/extension/payment/morpos_gateway.php</file>
+        <file>catalog/view/theme/default/template/extension/payment/morpos_gateway.twig</file>
+        <file>catalog/view/theme/default/template/extension/payment/morpos_gateway_result.twig</file>
+        <file>catalog/view/theme/default/javascript/morpos.js</file>
+        <file>catalog/view/theme/default/stylesheet/morpos.css</file>
+        <file>catalog/view/theme/default/image/payment/morpos-logo.png</file>
+        <file>catalog/view/theme/default/image/payment/morpos-logo-small.png</file>
+        <file>catalog/view/theme/default/image/payment/card-logos.png</file>
+        <file>system/library/morpos/Client.php</file>
+        <file>system/library/morpos/Currency.php</file>
+        <file>system/library/morpos/Conversation.php</file>
+    </files>
+</extension>
